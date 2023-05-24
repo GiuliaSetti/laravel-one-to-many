@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+
+use App\Models\Type;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -18,6 +21,7 @@ class ProjectController extends Controller
     public function index()
     {
         //
+        
         $projects = Project::all();
         return view('admin.projects.index', compact('projects'));
     }
@@ -30,8 +34,8 @@ class ProjectController extends Controller
     public function create()
     {
         //
-
-        return view('admin.projects.create');
+        $types = Type::all();
+        return view('admin.projects.create', compact('types'));
     }
 
     /**
@@ -67,7 +71,7 @@ class ProjectController extends Controller
     {
         //
 
-        return view('admin/projects/show', compact(('project')));
+        return view('admin/projects/show', compact('project'));
     }
 
     /**
@@ -79,8 +83,9 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         //
+        $types = Type::all();
 
-        return view('admin.projects.edit', compact('project'));
+        return view('admin.projects.edit', compact('project', 'types'));
     }
 
     /**
@@ -121,9 +126,9 @@ class ProjectController extends Controller
             $formData = $request->all(); 
 
             $validator = Validator::make($formData, [
-
                 'title' => 'required|min:5|max:255',
                 'description' => 'required|max:255',
+                'type_id' => 'nullable|exists:types,id',
                 'thumb' => 'required',
                 'languages' => 'required',
                 'repository' => 'required',
@@ -134,6 +139,7 @@ class ProjectController extends Controller
                 'title.max' => 'Title field cannot be longer than 255 characters.',
                 'description.required' => 'Description field is mandatory.',
                 'description.max' => 'Description field cannot be longer than 255 characters.',
+                'type_id.exists' => 'Select a category between those available',
                 'thumb.required' => "Thumbnail path is mandatory.",
                 'languages.required' => "Languages field is mandatory.",
                 'repository.required' => "Repository's name field is mandatory."

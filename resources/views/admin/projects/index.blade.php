@@ -14,6 +14,7 @@
             <thead>
                 <th>Title</th>
                 <th>Languages</th>
+                <th>Type</th>
                 <th>Repository</th>
                 <th>Details</th>
             </thead>
@@ -24,6 +25,7 @@
                 <tr>
                     <td>{{$project->title}}</td>
                     <td>{{$project->languages}}</td>
+                    <td>{{$project->type?->title}}</td>
                     <td>{{$project->repository}}</td>
                     <td><a href="{{route('admin.projects.show', $project->slug)}}">Show More</a></td>
                 </tr>

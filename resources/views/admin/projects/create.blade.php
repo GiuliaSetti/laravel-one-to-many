@@ -42,12 +42,28 @@
             </div>
 
             <div class="m-2">
-                <label for="languages">Languages</label>
+                <label for="languages">Languages:</label>
                 <input class="mx-3 form-control @error('languages') is-invalid @enderror" type="text" id="languages" name="languages" value="{{old('languages')}}" required>
 
                 @error('languages')
                     <div class="invalid-feedback">
                         {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="m-2">
+                <label for="type_id">Category:</label>
+                <select name="type_id" class="mx-3 form-select @error('type_id') is-invalid @enderror" type="text" id="type_id" value="{{old('type_id')}}">
+                    <option value="">None</option>
+                    @foreach($types as $type)
+                    <option value="{{$type->id}}" {{$type->id == old('type_id') ? 'selected' : ''}}>{{$type->name}}</option>
+                    @endforeach
+                </select>
+
+                @error('type_id')
+                    <div class="invalid-feedback">
+                    {{$message}}
                     </div>
                 @enderror
             </div>
