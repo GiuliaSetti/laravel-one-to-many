@@ -113,7 +113,7 @@
                         <hr>
                         <div><a href="{{route('admin.types.index')}}">SHOW ALL CATEGORIES</a></div>
                         
-                        <div><a href="{{route('admin.types.create')}}">ADD A NEW CATEGORY</div>
+                        <div><a href="{{route('admin.types.create')}}">ADD A NEW CATEGORY</a></div>
                     </div>
                 </aside>
             </div>

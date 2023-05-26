@@ -9,7 +9,7 @@
   
     <div class="m-2">
       <label for="title">Title:</label>
-      <input class="form-control @error('title') is-invalid @enderror" type="text" id="title" name="name" value="{{old('title')}}">
+      <input class="form-control @error('title') is-invalid @enderror" type="text" id="title" name="title" value="{{old('title')}}">
 
       @error('title')
         <div class="invalid-feedback">
